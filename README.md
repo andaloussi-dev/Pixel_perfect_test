@@ -19,7 +19,7 @@ php artisan migrate
 
 - called the Passport::routes method within the boot method of the AuthServiceProvider
 
--in the config/auth.php configuration file, i sat the driver option of the api authentication guard to passport
+- in the config/auth.php configuration file, i sat the driver option of the api authentication guard to passport
 
 - i created an api folder in the routes and placed the api routes inside it to make it more clear
 and updated the path in the routesServiceProvider 
