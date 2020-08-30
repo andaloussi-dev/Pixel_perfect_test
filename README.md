@@ -1,61 +1,61 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+those are the steps for creating this project 
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+- started by creating a new laravel project 
 
-## About Laravel
+- created sperated folders for each model 'Api/V1 , customer , admin , issue '
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- created a new logincontroller inside the Api folder 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-installed  Passport via the Composer package manager:
+composer require laravel/passport
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- added a new column to the user table named rool with a default value of 'customer'
+and migrated the database 
+php artisan migrate
 
-## Learning Laravel
+-i runed the php artisan passport:install command to create the encryption keys needed to generate secure access tokens.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+-added the Laravel\Passport\HasApiTokens trait to the App\User model
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-called the Passport::routes method within the boot method of the AuthServiceProvider
 
-## Laravel Sponsors
+-in the config/auth.php configuration file, i sat the driver option of the api authentication guard to passport
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- i created an api folder in the routes and placed the api routes inside it to make it more clear
+and updated the path in the routesServiceProvider 
 
-### Premium Partners
+- i worked with Personal Access Client bcs it fit this project from my prespective and  serve as a simpler approach to issuing access tokens in general
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+- defined  the API's scopes using the Passport::tokensCan method in the boot method of the AuthServiceProvider
 
-## Contributing
+- added the following middleware to the $routeMiddleware property the your app/Http/Kernel.php file:
+'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes::class,
+'scope' => \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- then i created the login method using passport tokens and scope 
 
-## Code of Conduct
+- i used the repositories design pattern to reuse the code in the api controller and in diffrent controllers 
+in the future if needed 
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- created repositories into the customer and admin folders
 
-## Security Vulnerabilities
+- generated a new issue model with it migration and setup the relationsship between the user and the issues
+and setup the fillable columns 
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- i created a costume Request files to manage the requests in the issue folder
+and added the required inputs in the rules method 
 
-## License
+- created policies for the admin and customer to add more security and controle
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- created the methods we need to manage the issues inside the customer and admin repositories
+
+- and added two controllers in the api folder one to manage the admin requests and the other for the customer
+
+- i managed the mails to the user when he create an issue when and when the admin updated 
+usign laravel notifications
+
+- finnaly i created the routes responssible for the Api requests.
+
+
+i hope this a good approach and scalable enough.
+
