@@ -6,18 +6,18 @@ those are the steps for creating this project
 
 - created a new logincontroller inside the Api folder 
 
--installed  Passport via the Composer package manager:
+- installed  Passport via the Composer package manager:
 composer require laravel/passport
 
 - added a new column to the user table named rool with a default value of 'customer'
 and migrated the database 
 php artisan migrate
 
--i runed the php artisan passport:install command to create the encryption keys needed to generate secure access tokens.
+- i runed the php artisan passport:install command to create the encryption keys needed to generate secure access tokens.
 
--added the Laravel\Passport\HasApiTokens trait to the App\User model
+- added the Laravel\Passport\HasApiTokens trait to the App\User model
 
--called the Passport::routes method within the boot method of the AuthServiceProvider
+- called the Passport::routes method within the boot method of the AuthServiceProvider
 
 -in the config/auth.php configuration file, i sat the driver option of the api authentication guard to passport
 
