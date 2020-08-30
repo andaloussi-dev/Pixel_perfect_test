@@ -51,8 +51,9 @@ and added the required inputs in the rules method
 
 - and added two controllers in the api folder one to manage the admin requests and the other for the customer
 
-- i managed the mails to the user when he create an issue when and when the admin updated 
+- i managed the mails to the user when he create an issue and when the admin updated 
 usign laravel notifications
+
 
 - finnaly i created the routes responssible for the Api requests.
 
